@@ -1,38 +1,35 @@
+// Imports: GraphQL
+import { gql } from 'apollo-server-express';
+
+
 // GraphQL: TypeDefs
-const TYPEDEFS = `
+const TYPEDEFS = gql`
+
   type Query {
-    getBaltimoreServices: [Service]
-    getChicagoServices: [Service]
-    getBloomingtonServices: [Service]
-    getBostonServices: [Service]
-    getBrooklineServices: [Service]
-    getGrandRapidsServices: [Service]
-    getPeoriaServices: [Service]
-    getSanFranciscoServices: [Service]
-    getWashingtonDCServices: [Service]
+    getInstanceList: [Instance]
+    getInstanceById(id: ID): Instance
   }
 
-  type Service {
-    service_code: String
-    service_name: String
-    description: String
-    metadata: Boolean
-    type: String
-    keywords: String
-    group: String
-  }
-
-  type ServiceDefinition {
-    service_code: String
-    variable: Boolean
-    code: String
-    datatype: String
-    required: Boolean
-    datatype_description: String
-    order: String
-    description: String
-    key: String
+  type Instance {
+    application_path: String
+    countries: String
     name: String
+    site_name: String
+    type: String
+    updated_at: String
+  }
+
+  type Country {
+    name_en: String
+    country_code: String
+    region_code: Int
+    region_code_en: String
+  }
+
+  type Region {
+    name: String
+    country: String
+    settlements: String
   }
 `;
 
